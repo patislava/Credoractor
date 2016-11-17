@@ -1,5 +1,6 @@
 ﻿using System.Windows;
-using Services;
+using Credoractor.Services;
+using Credoractor.Services.Purchase;
 
 namespace Credoractor
 {
@@ -8,8 +9,9 @@ namespace Credoractor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ModelCardData testCards = new ModelCardData();
-        private Controller controller;
+
+        private CardService testCards = new CardService();
+        private IPurchaseService purchase;
 
         public MainWindow()
         {
@@ -17,29 +19,34 @@ namespace Credoractor
             LoadCards();
         }
 
-
         private void SendButton(object sender, RoutedEventArgs e)
         {
-            if ((bool)purchaseRadioButton.IsChecked && !(bool)isReversal.IsChecked)
+            if (purchaseRadioButton.IsChecked == true && isReversal.IsChecked == false)
             {
-                controller = new Controller();
-                var message = controller.CreateMessage(testCard.Text.Split(' ')[1], transAmount.Text, cardEnterMode.Text, deviceId.Text, 
+                purchase = new PurchaseService();
+                // TODO - use WPF custom converter
+                var purchaseBody = purchase.MakePurchase(testCard.Text.Split(' ')[1], transAmount.Text, cardEnterMode.Text, deviceId.Text,
                     eciValues.Text, hasCVV2.IsChecked, transCurrency.Text);
-                message = controller.ModifyMessage(message);
-                MessageBox.Show("Message to be send is: " + message);
-            }
+                purchaseBody = purchase.ModifyMessage(purchaseBody);
+                MessageBox.Show("Message to be send is: " + purchaseBody);
+            }   
             else
+            {
                 MessageBox.Show("Such transaction type is not supported.");
+            }                    
         }
 
         public void LoadCards()
         {
-            var result = testCards.GetTestCards();
+            var result = testCards.GetCards();
 
+            /*
             for (int i = 0; i < result.Length; i++)
             {
                 testCard.Items.Add(result[i]);               
             }
+            */
+            
         }
     }
 }

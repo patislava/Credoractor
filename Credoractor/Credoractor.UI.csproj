@@ -113,7 +113,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <Import Project="..\Services\Services.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\Credoractor.Services\Credoractor.Services.csproj">
+      <Project>{0175c906-1197-4aae-86d3-e63491510124}</Project>
+      <Name>Credoractor.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
