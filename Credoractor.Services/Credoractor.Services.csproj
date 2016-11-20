@@ -48,6 +48,12 @@
     <Compile Include="TransactionData\Credoractor.Services.TransactionData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Credoractor.Models\Credoractor.Models.csproj">
+      <Project>{33F7CF09-0D56-4C91-8ABF-6F79FF99DEBF}</Project>
+      <Name>Credoractor.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

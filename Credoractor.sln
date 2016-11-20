@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Credoractor.Services", "Cre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Credoractor.Models", "Credoractor.Models\Credoractor.Models.csproj", "{33F7CF09-0D56-4C91-8ABF-6F79FF99DEBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Credoractor.TransactionClient", "Credoractor.TransactionClient\Credoractor.TransactionClient.csproj", "{7A5CC6B4-EFA4-41B4-94A2-149F14E15DB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{33F7CF09-0D56-4C91-8ABF-6F79FF99DEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33F7CF09-0D56-4C91-8ABF-6F79FF99DEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33F7CF09-0D56-4C91-8ABF-6F79FF99DEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A5CC6B4-EFA4-41B4-94A2-149F14E15DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5CC6B4-EFA4-41B4-94A2-149F14E15DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5CC6B4-EFA4-41B4-94A2-149F14E15DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5CC6B4-EFA4-41B4-94A2-149F14E15DB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

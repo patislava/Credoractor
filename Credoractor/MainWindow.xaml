@@ -729,17 +729,21 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <Grid Background="#FFE8E8E8" Margin="0,-2,0,-1.333">
-                    <ComboBox x:Name="cardEnterMode" HorizontalAlignment="Left" Height="23" Margin="48,55.714,0,0" VerticalAlignment="Top" Width="172.666" IsEditable="True" SelectedIndex="0" IsReadOnly="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="11*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="cardEnterMode" HorizontalAlignment="Left" Height="23" Margin="48,56,0,0" VerticalAlignment="Top" Width="173" IsEditable="True" SelectedIndex="0" IsReadOnly="True" Grid.ColumnSpan="2">
                         <ComboBoxItem Content="Ecommerce"/>
                     </ComboBox>
-                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="17" Margin="48,33.714,0,0" TextWrapping="Wrap" Text="Card Enter Mode" VerticalAlignment="Top" Width="110.666"/>
-                    <CheckBox x:Name="hasCVV2" Content="CVV2" HorizontalAlignment="Right" Height="17" Margin="0,58.607,145.162,0" VerticalAlignment="Top" Width="58.666" IsChecked="True"/>
-                    <ComboBox x:Name="eciValues" Margin="239,55.714,224.162,0" SelectedIndex="0" IsEditable="True" Padding="0" Height="23" VerticalAlignment="Top">
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="17" Margin="48,34,0,0" TextWrapping="Wrap" Text="Card Enter Mode" VerticalAlignment="Top" Width="111" Grid.ColumnSpan="2"/>
+                    <CheckBox x:Name="hasCVV2" Content="CVV2" HorizontalAlignment="Right" Height="17" Margin="0,59,145,0" VerticalAlignment="Top" Width="59" IsChecked="True" Grid.Column="1"/>
+                    <ComboBox x:Name="eciValues" Margin="186,56,224,0" SelectedIndex="0" IsEditable="True" Padding="0" Height="23" VerticalAlignment="Top" Grid.Column="1">
                         <ComboBoxItem x:Name="full3D" Content="Full 3-D Secure"/>
                         <ComboBoxItem x:Name="attempted3D" Content="3-D Secure Attempt"/>
                         <ComboBoxItem x:Name="no3D" Content="No 3-D Secure"/>
                     </ComboBox>
-                    <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Height="17" Margin="239,33.714,0,0" TextWrapping="Wrap" Text="ECI" VerticalAlignment="Top" Width="33.666"/>
+                    <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Height="17" Margin="186,34,0,0" TextWrapping="Wrap" Text="ECI" VerticalAlignment="Top" Width="34" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="cardPresent" Header="CP" FontSize="14">

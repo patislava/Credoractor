@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Credoractor.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,43 +9,19 @@ namespace Credoractor.Services
 {
     public class CardService 
     {
-        // New solution using IEnumerable. How to deal with use of for? (line 36)
-        private string cardName;
-        private string cardNumber;
+        public List<string> cardNames = new List<string>(1) { "VISA_CLASSIC", "MC CREDIT" };
+        public List<string> pans = new List<string>(1) { "4123688840000000", "5266000000000008" };
 
-        public CardService()
+        public IList<CardModel> GetCards()
         {
-            cardName = "VISA_CLASSIC";
-            cardNumber = "4123688840000000";
+            IList<CardModel> result = new List<CardModel>();
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                result.Add(new CardModel(cardNames[i], pans[i]));
+            }
+
+            return result; 
         }
-
-        //public CardService(string cardName, string cardNumber)
-        //{
-        //    this.cardName = cardName;
-        //    this.cardNumber = cardNumber;
-        // }
-
-        public IEnumerable<CardService> GetCards()
-        {
-            yield return new CardService(); //?? 2 arguments should be in constructor?
-        }
-
-       /*
-        OLD SOLUTION
-        *  //TODO: get cardsNames and pans from Excel file
-       public List<string> cardNames = new List<string>(1) { "VISA_CLASSIC" , "MC CREDIT"};
-       public List<string> pans = new List<string>(1) { "4123688840000000", "5266000000000008" };
-
-       public string[] GetTestCards()
-       {
-           string[] testCards = new string[pans.Count];
-
-           for (int i = 0; i < testCards.Length; i++)
-           {
-               testCards[i] = cardNames[i] + " " + pans[i];
-           }
-
-           return testCards;
-        */
     }
 }
