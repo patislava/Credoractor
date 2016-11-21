@@ -13,6 +13,11 @@ namespace Credoractor.Models
 
         public CardModel(string cardType, string cardNumber)
         {
+            if (CardNumber.Length <= 16 && CardNumber.Length >= 19)
+            {
+                throw new System.ArgumentException("Invalid card number. PAN can be 16-19 digits.");
+            }
+
             CardType = cardType;
             CardNumber = cardNumber;
         }
