@@ -2,7 +2,7 @@
 
 namespace Credoractor.Services
 {
-    public class TransactionData
+    public class TransactionElements
     {
         // DE02
         public string PAN { get; set; }

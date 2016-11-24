@@ -8,10 +8,10 @@ namespace Credoractor.Models
 {
     public class CardModel
     {
-        public string CardType { get; set; }
+        public CardType CardType { get; set; }
         public string CardNumber { get; set; }
 
-        public CardModel(string cardType, string cardNumber)
+        public CardModel(CardType cardType, string cardNumber)
         {
             if (CardNumber.Length <= 16 && CardNumber.Length >= 19)
             {

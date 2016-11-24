@@ -41,11 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Credoractor.Services.CardService.cs" />
-    <Compile Include="Purchase\Credoractor.Services.PurchaseService.cs" />
-    <Compile Include="Purchase\Credoractor.Services.IPurchaseService.cs" />
-    <Compile Include="TransactionData\Credoractor.Services.CardEnterMode.cs" />
-    <Compile Include="TransactionData\Credoractor.Services.TransactionCurrency.cs" />
-    <Compile Include="TransactionData\Credoractor.Services.TransactionData.cs" />
+    <Compile Include="Purchase\PurchaseService.cs" />
+    <Compile Include="Purchase\IPurchaseService.cs" />
+    <Compile Include="TransactionData\CardEnterMode.cs" />
+    <Compile Include="TransactionData\TransactionCurrency.cs" />
+    <Compile Include="TransactionData\TransactionElements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

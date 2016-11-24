@@ -8,9 +8,9 @@ namespace Credoractor.Services.Purchase
 {
     public interface IPurchaseService
     {
-        TransactionData MakePurchase(string pan, string transactionAmount, string cardEntryMode,
+        TransactionElements MakePurchase(string pan, string transactionAmount, string cardEntryMode,
             string terminalId, string eciOne, bool? eciTwo, string transactionCurrency);
 
-        TransactionData ModifyMessage(TransactionData message);
+        TransactionElements ModifyMessage(TransactionElements message); //to be removed
     }
 }

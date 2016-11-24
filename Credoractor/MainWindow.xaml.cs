@@ -16,7 +16,7 @@ namespace Credoractor
         public MainWindow()
         {
             InitializeComponent();
-            LoadCards();
+          //  LoadCards();
         }
 
         private void SendButton(object sender, RoutedEventArgs e)
@@ -36,10 +36,9 @@ namespace Credoractor
             }                    
         }
 
-        public void LoadCards()
-        {
-            var result = testCards.GetCards();
-
+       // public void LoadCards()
+     //   {
+        //    var result = testCards.GetCards();
             /*
             for (int i = 0; i < result.Length; i++)
             {
@@ -49,4 +48,3 @@ namespace Credoractor
             
         }
     }
-}

@@ -8,6 +8,8 @@ namespace Credoractor.Services.TransactionData
 {
     public enum CardEnterMode
     {
-        Ecommerce
+        Ecommerce,
+        MailOrder,
+        PhoneOrder
     }
 }

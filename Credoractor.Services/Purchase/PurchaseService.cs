@@ -1,19 +1,14 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Credoractor.Services.TransactionData;
 
 namespace Credoractor.Services.Purchase
 {
     public class PurchaseService : IPurchaseService
     {
-        public TransactionData MakePurchase(string testCard, string transactionAmount, string cardEntryMode,
+        public TransactionElements MakePurchase(string testCard, string transactionAmount, string cardEntryMode,
             string terminalId, string eciOne, bool? eciTwo, string transactionCurrency)
         {
-            var result = new TransactionData();
+            var result = new TransactionElements();
 
             result.PAN = testCard;
             result.ProcessingCode = "000000";
@@ -36,7 +31,7 @@ namespace Credoractor.Services.Purchase
         }
 
         //TODO - implement through WPF custom converter on UI part, temporary solution
-        public TransactionData ModifyMessage(TransactionData message)
+        public TransactionElements ModifyMessage(TransactionElements message)
 
         {
             if (message.POSEntryMode == Services.TransactionData.CardEnterMode.Ecommerce.ToString()) //deal with enums
