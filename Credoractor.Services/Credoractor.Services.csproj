@@ -44,6 +44,9 @@
     <Compile Include="Purchase\PurchaseService.cs" />
     <Compile Include="Purchase\IPurchaseService.cs" />
     <Compile Include="TransactionData\CardEnterMode.cs" />
+    <Compile Include="TransactionData\NumberGenerator.cs" />
+    <Compile Include="TransactionData\RetRefNumberGenerator.cs" />
+    <Compile Include="TransactionData\StanNumberGenerator.cs" />
     <Compile Include="TransactionData\TransactionCurrency.cs" />
     <Compile Include="TransactionData\TransactionElements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,20 +9,20 @@ using System.Configuration;
 namespace Credoractor.TransactionClient.Tests
 {
     [TestFixture, Description("Tests of what we are sending (json)")]
-    class PayloadTests
+    public class PayloadTests
     {
         [Test, Description("Null payload")]
-        public void NullPathArgument_ReturnedArgumentNullException()
+        public void NullPayloadArgument_ReturnedArgumentNullException()
         {
             TransactionSender transactionSender = new TransactionSender(".\\transactor.exe");
-            Assert.Throws<ArgumentException>(() => transactionSender.SendTransaction(null));
+            Assert.Throws<System.ComponentModel.Win32Exception>(() => transactionSender.SendTransaction(null));
         }
 
         [Test, Description("Empty payload")]
-        public void EmptyPathArgument_ReturnedArgumentException()
+        public void EmptyPayloadArgument_ReturnedArgumentException()
         {
             TransactionSender transactionSender = new TransactionSender(".\\transactor.exe");
-            Assert.Throws<ArgumentException>(() => transactionSender.SendTransaction(""));
+            Assert.Throws<System.ComponentModel.Win32Exception>(() => transactionSender.SendTransaction(""));
         }
 
         //[Test, Description("Invalid payload")]

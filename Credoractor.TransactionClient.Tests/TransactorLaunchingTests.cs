@@ -18,7 +18,7 @@ namespace Credoractor.TransactionClient.Tests
         [Test, Description("Null path")]
         public void NullPathArgument_ReturnedArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new TransactionSender(null));
+            Assert.Throws<ArgumentException>(() => new TransactionSender(null));
         }
 
         [Test, Description("Empty path")]
@@ -27,17 +27,10 @@ namespace Credoractor.TransactionClient.Tests
             Assert.Throws<ArgumentException>(() => new TransactionSender(""));
         }
 
-        [Test, Description("Wrong path with no transactor.exe file")] // File.Exists method
+        [Test, Description("Wrong path with no transactor.exe file")]
         public void WrongPathArgument_ReturnedArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new TransactionSender(".\\WrongFolderForTest\\transactor.exe"));
-        }
-
-        [Test, Description("Check if App.config contains valid path to transactor.exe")] //??? 
-        public void AppConfigContainsCorrectPathToTransactor()
-        {
-            string path = ConfigurationManager.AppSettings[0];
-            Assert.IsTrue(File.Exists(path));
+            Assert.Throws<System.ComponentModel.Win32Exception>(() => new TransactionSender(".\\WrongFolderForTest\\transactor.exe"));
         }
     }
 }

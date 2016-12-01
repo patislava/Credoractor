@@ -1,6 +1,9 @@
 ﻿using System.Windows;
 using Credoractor.Services;
 using Credoractor.Services.Purchase;
+using System;
+using System.Linq;
+using Credoractor.Services.TransactionData;
 
 namespace Credoractor
 {
@@ -16,7 +19,7 @@ namespace Credoractor
         public MainWindow()
         {
             InitializeComponent();
-          //  LoadCards();
+            //LoadCards();
         }
 
         private void SendButton(object sender, RoutedEventArgs e)
