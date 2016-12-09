@@ -5,9 +5,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Credoractor.Services.TransactionData
+namespace Credoractor.Services
 {
-    public class NumberGenerator
+    public class NumberGenerator : INumberGenerator
     {
         public int lastUsedSecond;
         public int lastDigit = 0;

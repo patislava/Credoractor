@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Credoractor.Services.TransactionData
+namespace Credoractor.Services
 {
-    public enum TransactionCurrency
+    public interface INumberGenerator
     {
-        EUR,
-        GBP,
-        ILS,
-        USD
+        string GenerateUniqueNumber();
     }
 }

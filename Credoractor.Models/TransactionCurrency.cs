@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Credoractor.Services.TransactionData
+namespace Credoractor.Models
 {
-    public enum CardEnterMode
+    public enum TransactionCurrency
     {
-        Ecommerce,
-        MailOrder,
-        PhoneOrder
+        EUR,
+        GBP,
+        ILS,
+        USD
     }
 }

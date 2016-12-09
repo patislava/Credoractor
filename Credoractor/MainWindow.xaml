@@ -713,7 +713,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="testCardText" Height="17" Margin="0,35.653,11.332,0" TextWrapping="Wrap" Text="Card" VerticalAlignment="Top" HorizontalAlignment="Right" Width="29.497" FontSize="14"/>
-        <ComboBox x:Name= "testCard" Grid.Column="2" HorizontalAlignment="Left" Height="19.75" Margin="10,35.143,0,0" VerticalAlignment="Top" Width="269.532" Style="{DynamicResource ComboBoxLarge}" SelectedIndex="0" IsEditable="True" Padding="0,0,4,0" FontSize="14"/>
+        <ComboBox x:Name= "testCard" Grid.Column="2" HorizontalAlignment="Left" Height="19.75" Margin="10,35.143,0,0" VerticalAlignment="Top" Width="269.532" Style="{DynamicResource ComboBoxLarge}" SelectedIndex="0" IsEditable="True" Padding="0,0,4,0" FontSize="14" IsSynchronizedWithCurrentItem="False"/>
         <TextBox x:Name="transAmount" Grid.Column="2" Height="19.75" Margin="10,64.06,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{DynamicResource InputBoxStyle}" HorizontalAlignment="Left" Width="71.668" d:LayoutOverrides="HorizontalAlignment" SnapsToDevicePixels="True" Background="White" UndoLimit="10"/>
         <TextBlock x:Name="amountText" Margin="40.334,64.06,-5,0" TextWrapping="Wrap" Text="Amount" RenderTransformOrigin="0.723,5.588" Height="17" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2"/>
         <ComboBox x:Name= "transCurrency" Grid.Column="2" Margin="98.604,64.06,0,0" Style="{DynamicResource ComboBoxLarge}" HorizontalAlignment="Left" Height="19.75" VerticalAlignment="Top" Width="51.698" SelectedIndex="0" Padding="0,0,1,0" IsEditable="True" FontSize="14">

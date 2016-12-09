@@ -4,18 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Credoractor.Services.TransactionData
+namespace Credoractor.Services
 {
     public class StanNumberGenerator
     {
         public string STAN { get; set; }
 
-        public string GenerateStan()
+        public string GenerateStan(string uniqueNumber)
         {
-            NumberGenerator sixDigits = new NumberGenerator();
-
-            STAN = sixDigits.GenerateUniqueNumber();
-
+            STAN = uniqueNumber;
             return STAN;
         }
     }

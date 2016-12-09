@@ -4,6 +4,7 @@ using Credoractor.Services.Purchase;
 using System;
 using System.Linq;
 using Credoractor.Services.TransactionData;
+using Credoractor.TransactionClient;
 
 namespace Credoractor
 {
@@ -19,35 +20,50 @@ namespace Credoractor
         public MainWindow()
         {
             InitializeComponent();
-            //LoadCards();
+            LoadCards();
         }
 
         private void SendButton(object sender, RoutedEventArgs e)
         {
             if (purchaseRadioButton.IsChecked == true && isReversal.IsChecked == false)
             {
+                //Prepare RRN, STAN Numbers
+                string uniqueNumber = (new NumberGenerator() as INumberGenerator).GenerateUniqueNumber();
+
+                StanNumberGenerator stanObj = new StanNumberGenerator();
+                string stan = stanObj.GenerateStan(uniqueNumber);
+
+                RetRefNumberGenerator rrnObj = new RetRefNumberGenerator();
+                string rrn = rrnObj.GenerateRrn(uniqueNumber);
+
+                //Start transaction creation
                 purchase = new PurchaseService();
-                // TODO - use WPF custom converter
-                var purchaseBody = purchase.MakePurchase(testCard.Text.Split(' ')[1], transAmount.Text, cardEnterMode.Text, deviceId.Text,
-                    eciValues.Text, hasCVV2.IsChecked, transCurrency.Text);
-                purchaseBody = purchase.ModifyMessage(purchaseBody);
-                MessageBox.Show("Message to be send is: " + purchaseBody);
-            }   
+
+                Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text.Split(' ')[1], stan, transAmount.Text,
+                    cardEnterMode.Text, rrn, deviceId.Text, transCurrency.Text);
+                TransactionSender transactionSender = new TransactionSender(@".\transactor.exe");
+                transactionSender.WriteJsonToFile(purchaseTransaction);
+
+                //TODO - launch transactor.exe and send transaction
+
+                MessageBox.Show("Purchase is successfully sent.");
+
+                //TODO - use WPF custom converter
+            }
             else
             {
                 MessageBox.Show("Such transaction type is not supported.");
-            }                    
+            }
         }
 
-       // public void LoadCards()
-     //   {
-        //    var result = testCards.GetCards();
-            /*
-            for (int i = 0; i < result.Length; i++)
+        public void LoadCards()
+        {
+            var result = testCards.GetCards();
+
+            for (int i = 0; i < result.Count; i++)
             {
-                testCard.Items.Add(result[i]);               
+                testCard.Items.Add(result[i]);
             }
-            */
-            
         }
     }
+}

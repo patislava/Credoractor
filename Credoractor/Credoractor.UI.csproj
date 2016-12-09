@@ -114,9 +114,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Credoractor.Models\Credoractor.Models.csproj">
+      <Project>{33f7cf09-0d56-4c91-8abf-6f79ff99debf}</Project>
+      <Name>Credoractor.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Credoractor.Services\Credoractor.Services.csproj">
       <Project>{0175c906-1197-4aae-86d3-e63491510124}</Project>
       <Name>Credoractor.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Credoractor.TransactionClient\Credoractor.TransactionClient.csproj">
+      <Project>{7a5cc6b4-efa4-41b4-94a2-149f14e15db4}</Project>
+      <Name>Credoractor.TransactionClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

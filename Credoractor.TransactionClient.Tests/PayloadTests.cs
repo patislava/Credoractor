@@ -18,12 +18,12 @@ namespace Credoractor.TransactionClient.Tests
             Assert.Throws<System.ComponentModel.Win32Exception>(() => transactionSender.SendTransaction(null));
         }
 
-        [Test, Description("Empty payload")]
-        public void EmptyPayloadArgument_ReturnedArgumentException()
-        {
-            TransactionSender transactionSender = new TransactionSender(".\\transactor.exe");
-            Assert.Throws<System.ComponentModel.Win32Exception>(() => transactionSender.SendTransaction(""));
-        }
+        //[Test, Description("Empty payload")]
+        //public void EmptyPayloadArgument_ReturnedArgumentException()
+        //{
+        //    TransactionSender transactionSender = new TransactionSender(".\\transactor.exe");
+        //    Assert.Throws<System.ComponentModel.Win32Exception>(() => transactionSender.SendTransaction(""));
+        //}
 
         //[Test, Description("Invalid payload")]
         //TODO: check JSON - element by element? TBD

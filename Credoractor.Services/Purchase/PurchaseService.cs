@@ -1,46 +1,44 @@
 ﻿
 using System;
+using Credoractor.Models;
+using Credoractor.Services;
 
 namespace Credoractor.Services.Purchase
 {
     public class PurchaseService : IPurchaseService
     {
-        public TransactionElements MakePurchase(string testCard, string transactionAmount, string cardEntryMode,
-            string terminalId, string eciOne, bool? eciTwo, string transactionCurrency)
+        public Transaction MakePurchase(string testCard, string stan, string transactionAmount, string cardEntryMode,
+            string rrn, string terminalId, string transactionCurrency)
         {
-            var result = new TransactionElements();
+            var result = new Transaction();
 
+            result.MessageTypeIdentifier = "200"; //Sale: Purchase Financial Messages (0200/0210)
             result.PAN = testCard;
-            result.ProcessingCode = "000000";
-            result.TransactionAmount = transactionAmount;
+            result.ProcessingCode = "000000"; //"00" - Goods/Services Purchase
+            result.TransactionAmount = transactionAmount + "00";
             result.TransDateTime = DateTime.Now.ToString("MMddHHmmss");
-            result.STAN = "STAN number";
+            result.STAN = stan; //??????????
             result.TransactionTime = DateTime.Now.ToString("HHmmss");
             result.TransactionDate = DateTime.Now.ToString("MMdd");
-            result.POSEntryMode = cardEntryMode;
-            result.RRN = "RRN number";
+            if (CardEnterMode.Ecommerce.ToString() == "Ecommerce")
+            {
+                cardEntryMode = "81";
+                result.POSEntryMode = cardEntryMode + "0";
+            }
+            result.RRN = rrn; //??????????
             result.TerminalId = terminalId;
             //result.CardAcceptorId = "optional";
             //result.CardAcceptorNameLocation = "optional";
-            result.ProprieatryField46 = eciOne;
-            result.ProprieatryField47 = eciTwo;
+            //result.ProprieatryField46 = new TagField[] {};
+            result.ProprieatryField47 = new TagField[] { new TagField("906", "5"), new TagField("909", "07"), new TagField("916", "0") }; //Hardcoded for easy scenario: ecom without 3D sec, no CVV2
             //result.ProprieatryField48 -TODO later, only for MC
-            result.TransactionCurrency = transactionCurrency;
-
+            if (TransactionCurrency.EUR.ToString() == "EUR")
+            {
+                transactionCurrency = "978";
+                result.TransactionCurrency = transactionCurrency;
+            }
             return result;
         }
-
-        //TODO - implement through WPF custom converter on UI part, temporary solution
-        public TransactionElements ModifyMessage(TransactionElements message)
-
-        {
-            if (message.POSEntryMode == Services.TransactionData.CardEnterMode.Ecommerce.ToString()) //deal with enums
-                message.POSEntryMode = "810";
-
-            if (message.TransactionCurrency == Services.TransactionData.TransactionCurrency.EUR.ToString()) //deal with enums
-                message.TransactionCurrency = "978";
-
-            return message;
-            }
-        }
+        ////TODO - implement through WPF custom converter on UI part, temporary solution
     }
+}
