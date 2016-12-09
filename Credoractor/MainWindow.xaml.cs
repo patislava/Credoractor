@@ -3,7 +3,7 @@ using Credoractor.Services;
 using Credoractor.Services.Purchase;
 using System;
 using System.Linq;
-using Credoractor.Services.TransactionData;
+using Credoractor.Services;
 using Credoractor.TransactionClient;
 
 namespace Credoractor
@@ -42,7 +42,7 @@ namespace Credoractor
                 Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text.Split(' ')[1], stan, transAmount.Text,
                     cardEnterMode.Text, rrn, deviceId.Text, transCurrency.Text);
                 TransactionSender transactionSender = new TransactionSender(@".\transactor.exe");
-                transactionSender.WriteJsonToFile(purchaseTransaction);
+                transactionSender.SendTransaction(purchaseTransaction);
 
                 //TODO - launch transactor.exe and send transaction
 
