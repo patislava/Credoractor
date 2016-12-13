@@ -36,7 +36,7 @@ namespace Credoractor.TransactionClient
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.EnableRaisingEvents = false;
             proc.StartInfo.FileName =
-                @"C:\Users\isadovskaya\Desktop\Tool\Credoractor\Credoractor\bin\Release\send_json.bat";
+                @".\send_json.bat";
             proc.StartInfo.CreateNoWindow = true;
             proc.StartInfo.UseShellExecute = false;
             proc.Start();

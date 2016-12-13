@@ -43,7 +43,7 @@ namespace Credoractor.Models
 
         public override string ToString()
         {
-            return (CardName + " " + CardNumber);
+            return (CardNumber);
         }
     }
 }

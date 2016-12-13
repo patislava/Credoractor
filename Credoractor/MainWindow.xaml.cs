@@ -8,7 +8,9 @@ using System.Management.Automation;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Management.Automation.Runspaces;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Markup;
 
 namespace Credoractor
 {
@@ -23,61 +25,61 @@ namespace Credoractor
 
         public MainWindow()
         {
-            InitializeComponent();
-            //throw new ArgumentNullException("test");
+            try
+            {
+                InitializeComponent();
+            }
+            catch (XamlParseException ex)
+            {
+              if (ex.InnerException != null)
+                    MessageBox.Show(ex.InnerException.ToString());
+            }
+
             LoadCards();
         }
 
+        
         private void SendButton(object sender, RoutedEventArgs e)
         {
-            if (purchaseRadioButton.IsChecked == true && isReversal.IsChecked == false)
+            try
             {
-            //    //Prepare RRN, STAN Numbers
-            //    string uniqueNumber = (new NumberGenerator() as INumberGenerator).GenerateUniqueNumber();
+                if (purchaseRadioButton.IsChecked == true && isReversal.IsChecked == false)
+                {                
+                    //Start transaction creation
+                    purchase = new PurchaseService();
 
-            //    StanNumberGenerator stanObj = new StanNumberGenerator();
-            //    string stan = stanObj.GenerateStan(uniqueNumber);
+                    Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text, transAmount.Text,
+                        cardEnterMode.Text, deviceId.Text, transCurrency.Text);
+                    try
+                    {
+                        TransactionSender transactionSender = new TransactionSender(@".\send_json.bat");
+                        transactionSender.SendTransaction(purchaseTransaction);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.InnerException != null)
+                            MessageBox.Show(ex.InnerException.ToString());
+                    }
+                    //TODO - launch transactor.exe and send transaction
 
-            //    RetRefNumberGenerator rrnObj = new RetRefNumberGenerator();
-            //    string rrn = rrnObj.GenerateRrn(uniqueNumber);
+                    System.Threading.Thread.Sleep(3000);
+                    string logPath =
+                        @".\powerShellLog.txt";
+                    var text = File.ReadAllText(logPath, Encoding.UTF8);
 
-                //Start transaction creation
-                purchase = new PurchaseService();
-
-                Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text.Split(' ')[1], transAmount.Text,
-                    cardEnterMode.Text, deviceId.Text, transCurrency.Text);
-
-                TransactionSender transactionSender = new TransactionSender(@".\send_json.bat");
-                transactionSender.SendTransaction(purchaseTransaction);
-
-                //TODO - launch transactor.exe and send transaction
-
-                string logPath =
-                     @"C: \Users\isadovskaya\Desktop\Tool\Credoractor\Credoractor\bin\Release\powerShellLog.txt";
-                var text = File.ReadAllText(logPath, Encoding.UTF8);
-
-                MessageBox.Show("Test executed:\n" + text);
-
-                // using (var fs = File.OpenRead(logPath))
-                // {
-                //     fs.Position = previousFileLength;
-                //     string line;
-
-                //     using (var sr = new StreamReader(fs))
-                //     {
-                //         while (!sr.EndOfStream)
-                //         {
-                //             line = sr.ReadToEnd();
-                //             MessageBox.Show("Message log is: \n" + line);
-                //         }
-                //     }
-                //     //MessageBox.Show("Message log is: \n" + line);
-                // }
-                //TODO - use WPF custom converter
+                    MessageBox.Show("Test executed:\n" + text);
+                  
+                    //TODO - use WPF custom converter
+                }
+                else
+                {
+                    MessageBox.Show("Such transaction type is not supported.");
+                }
             }
-            else
+            catch (System.ComponentModel.Win32Exception ex)
             {
-                MessageBox.Show("Such transaction type is not supported.");
+                if (ex.InnerException != null)
+                    MessageBox.Show(ex.InnerException.ToString());
             }
         }
 
