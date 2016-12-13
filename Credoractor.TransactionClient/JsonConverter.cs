@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Credoractor.Services;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Credoractor.TransactionClient
 {
     class JsonConverter
     {
-        public void WriteJsonToFile(Transaction transaction)
+        public void WriteJsonToFile(object transaction)
         {
             //Convert transaction to json    
             string json = JsonConvert.SerializeObject(transaction);

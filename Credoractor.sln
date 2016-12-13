@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Credoractor.TransactionClie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Credoractor.TransactionClient.Tests", "Credoractor.TransactionClient.Tests\Credoractor.TransactionClient.Tests.csproj", "{C93B7F93-25BD-4709-9E2B-29B23FF9FB59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Credoractor.Services.Tests", "Credoractor.Services.Tests\Credoractor.Services.Tests.csproj", "{B13BF8DF-F4A2-4DB2-B498-28C5410031A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C93B7F93-25BD-4709-9E2B-29B23FF9FB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C93B7F93-25BD-4709-9E2B-29B23FF9FB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C93B7F93-25BD-4709-9E2B-29B23FF9FB59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B13BF8DF-F4A2-4DB2-B498-28C5410031A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B13BF8DF-F4A2-4DB2-B498-28C5410031A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B13BF8DF-F4A2-4DB2-B498-28C5410031A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B13BF8DF-F4A2-4DB2-B498-28C5410031A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

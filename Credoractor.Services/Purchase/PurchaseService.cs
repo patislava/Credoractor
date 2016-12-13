@@ -1,16 +1,32 @@
 ﻿
 using System;
+using System.Security.Cryptography;
 using Credoractor.Models;
 using Credoractor.Services;
+using Credoractor.TransactionClient;
 
 namespace Credoractor.Services.Purchase
 {
     public class PurchaseService : IPurchaseService
     {
-        public Transaction MakePurchase(string testCard, string stan, string transactionAmount, string cardEntryMode,
-            string rrn, string terminalId, string transactionCurrency)
+        private string stan;
+        private string rrn;
+
+        public PurchaseService()
         {
-            var result = new Transaction();
+            string uniqueNumber = (new NumberGenerator() as INumberGenerator).GenerateUniqueNumber();
+
+            StanNumberGenerator stanObj = new StanNumberGenerator();
+            stan = stanObj.GenerateStan(uniqueNumber);
+
+            RetRefNumberGenerator rrnObj = new RetRefNumberGenerator();
+            rrn = rrnObj.GenerateRrn(uniqueNumber);
+        }
+
+        public Transaction MakePurchase(string testCard, string transactionAmount, string cardEntryMode,
+            string terminalId, string transactionCurrency)
+        {
+            Transaction result = new Transaction();
 
             result.MessageTypeIdentifier = "200"; //Sale: Purchase Financial Messages (0200/0210)
             result.PAN = testCard;
@@ -37,6 +53,7 @@ namespace Credoractor.Services.Purchase
                 transactionCurrency = "978";
                 result.TransactionCurrency = transactionCurrency;
             }
+
             return result;
         }
         ////TODO - implement through WPF custom converter on UI part, temporary solution

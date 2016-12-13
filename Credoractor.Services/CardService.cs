@@ -1,9 +1,12 @@
 ﻿using Credoractor.Models;
+using LinqToExcel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LinqToExcel.Attributes;
 
 namespace Credoractor.Services
 {
@@ -26,7 +29,31 @@ namespace Credoractor.Services
                     result.Add(new CardModel(CardType.MasterCard, pans[i]));
                 }
             }
-            return result; 
+            return result;
         }
+
+
+        //public List<CardModel> GetCardBasicInfo(string dataPath) 
+        //{
+        //    ExcelQueryFactory data = new ExcelQueryFactory(dataPath);
+        //    if (!File.Exists(dataPath))
+        //        return null;
+
+        //    var cardName = from row in data.Worksheet<CardExcelData>("CardData")
+        //                   where !string.IsNullOrEmpty(row.CardName)
+        //                   select row.CardName;
+        //    var cardNumber = from row in data.Worksheet<CardExcelData>("CardData")
+        //                     where !string.IsNullOrEmpty(row.PAN)
+        //                     select row.PAN;
+
+        //    var result = new List<CardModel>();
+        //    var cardNumberArray = cardNumber.ToArray();
+        //    var cardNameArray = cardName.ToArray();          
+        //    for (int i = 0; i < cardNumberArray.Length; i++)
+        //    {
+        //        result.Add(new CardModel(cardNameArray[i], cardNumberArray[i]));
+        //    }
+        //    return result;
     }
 }
+

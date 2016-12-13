@@ -8,7 +8,7 @@ namespace Credoractor.Services.Purchase
 {
     public interface IPurchaseService
     {
-        Transaction MakePurchase(string testCard, string stan, string transactionAmount, string cardEntryMode,
-            string rrn, string terminalId, string transactionCurrency);
+        Transaction MakePurchase(string testCard, string transactionAmount, string cardEntryMode,
+            string terminalId, string transactionCurrency);
     }
 }
