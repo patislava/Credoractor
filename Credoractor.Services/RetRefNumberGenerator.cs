@@ -26,6 +26,17 @@ namespace Credoractor.Services
 
         public string GenerateRrn(string uniqueNumber)
         {
+            if (string.IsNullOrEmpty(uniqueNumber))
+            {
+                throw new ArgumentNullException("Unique number was not passed to create RRN.");
+            }
+
+            if (uniqueNumber.Length != 6)
+            {
+                var result = "Passed argument does not satisfy requirements for RRN generation.";
+                return result;
+            }
+
             yearLastDigit = DateTime.Now.Year % 10;
             
             JulianCalendar calendar = new System.Globalization.JulianCalendar();

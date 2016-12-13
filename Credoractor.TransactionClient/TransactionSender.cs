@@ -2,6 +2,9 @@
 using System.Diagnostics;
 using System.Management.Automation;
 using System.Collections.ObjectModel;
+using System.Configuration;
+using System.IO;
+using System.Text;
 
 namespace Credoractor.TransactionClient
 {
@@ -13,10 +16,15 @@ namespace Credoractor.TransactionClient
         {
             Path = path;
 
-            if (String.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
                 throw new ArgumentException("Parameter cannot be empty or null.");
             }
+
+            //if (!File.Exists(path))
+            //{
+            //    throw new System.ComponentModel.Win32Exception();
+            //}
 
             if (path.Contains(":\\"))
             {
@@ -24,36 +32,33 @@ namespace Credoractor.TransactionClient
             }
         }
 
-        //Create process which launches transactor.exe with payload passed as an argument ?? 
         public void SendTransaction(object payload) 
         {
-            // //if (!payload.Equals(null))
-            // {
+            if (payload.Equals(null))
+            {
+                throw new ArgumentNullException("There is no transaction data to send.");
+            }
+
+            //Convert payload to json
             JsonConverter jsonConverter = new JsonConverter();
             jsonConverter.WriteJsonToFile(payload);
 
             //Run batch file
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.EnableRaisingEvents = false;
-            proc.StartInfo.FileName =
-                @".\send_json.bat";
+            proc.StartInfo.FileName = Path;
             proc.StartInfo.CreateNoWindow = true;
             proc.StartInfo.UseShellExecute = false;
-            proc.Start();
-            ////Preparation of process to run
-            //ProcessStartInfo transactorExeStart = new ProcessStartInfo();
-            //transactorExeStart.FileName = Path;
-            ////transactorExeStart.Arguments = @"direct .\transaction.json";
-            ////transactorExeStart.CreateNoWindow = false;
-            ////////transactorExeStart.RedirectStandardOutput = true;
+            proc.Start();            
+        }
 
-            ////Run transactor.exe
-            //////using (Process process = Process.Start(transactorExeStart))
-            //////{
-            //////    //TODO: transactor.exe doesn't close console when finished, so log reader should be implemented 
-            //////    //to catch the moment when output file is not updated anymore.
-            //////}
-            //////// }
+        public string GetTransactionResult()
+        {
+            System.Threading.Thread.Sleep(5000);
+            string logPath = ConfigurationManager.AppSettings["logPath"];
+            var result = File.ReadAllText(logPath, Encoding.UTF8);
+
+            return result;
         }
     }
 }

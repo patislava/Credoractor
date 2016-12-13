@@ -6,6 +6,7 @@ using System.Linq;
 using Credoractor.TransactionClient;
 using System.Management.Automation;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.IO;
 using System.Management.Automation.Runspaces;
 using System.Runtime.CompilerServices;
@@ -25,62 +26,53 @@ namespace Credoractor
 
         public MainWindow()
         {
-            try
-            {
+            //try
+            //{
                 InitializeComponent();
-            }
-            catch (XamlParseException ex)
-            {
-              if (ex.InnerException != null)
-                    MessageBox.Show(ex.InnerException.ToString());
-            }
+            //}
+            //catch (XamlParseException ex)
+            //{
+            //  if (ex.InnerException != null)
+            //        MessageBox.Show(ex.InnerException.ToString());
+            //}
 
             LoadCards();
         }
 
-        
         private void SendButton(object sender, RoutedEventArgs e)
         {
-            try
+            //try
+            //{
+            if (purchaseRadioButton.IsChecked == true && isReversal.IsChecked == false)
             {
-                if (purchaseRadioButton.IsChecked == true && isReversal.IsChecked == false)
-                {                
-                    //Start transaction creation
-                    purchase = new PurchaseService();
+                //Start transaction creation
+                purchase = new PurchaseService();
 
-                    Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text, transAmount.Text,
-                        cardEnterMode.Text, deviceId.Text, transCurrency.Text);
-                    try
-                    {
-                        TransactionSender transactionSender = new TransactionSender(@".\send_json.bat");
-                        transactionSender.SendTransaction(purchaseTransaction);
-                    }
-                    catch (Exception ex)
-                    {
-                        if (ex.InnerException != null)
-                            MessageBox.Show(ex.InnerException.ToString());
-                    }
-                    //TODO - launch transactor.exe and send transaction
+                Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text, transAmount.Text,
+                    cardEnterMode.Text, deviceId.Text, transCurrency.Text);
 
-                    System.Threading.Thread.Sleep(3000);
-                    string logPath =
-                        @".\powerShellLog.txt";
-                    var text = File.ReadAllText(logPath, Encoding.UTF8);
-
-                    MessageBox.Show("Test executed:\n" + text);
-                  
-                    //TODO - use WPF custom converter
-                }
-                else
+                try
                 {
-                    MessageBox.Show("Such transaction type is not supported.");
+                    TransactionSender transactionSender = new TransactionSender(ConfigurationManager.AppSettings["transactorPath"]);
+                    transactionSender.SendTransaction(purchaseTransaction);
+                    var result = transactionSender.GetTransactionResult();
+                    MessageBox.Show("Test executed:\n" + result);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch (System.ComponentModel.Win32Exception ex)
+            else
             {
-                if (ex.InnerException != null)
-                    MessageBox.Show(ex.InnerException.ToString());
+                MessageBox.Show("Such transaction type is not supported.");
             }
+            //}
+            //catch (System.ComponentModel.Win32Exception ex)
+            //{
+            //    if (ex.InnerException != null)
+            //        MessageBox.Show(ex.InnerException.ToString());
+            //}
         }
 
         public void LoadCards()

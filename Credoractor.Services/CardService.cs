@@ -32,7 +32,7 @@ namespace Credoractor.Services
             return result;
         }
 
-
+        //TODO - implement reading from Excel
         //public List<CardModel> GetCardBasicInfo(string dataPath) 
         //{
         //    ExcelQueryFactory data = new ExcelQueryFactory(dataPath);

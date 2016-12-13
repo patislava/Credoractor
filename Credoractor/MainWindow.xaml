@@ -728,8 +728,8 @@
                         <ComboBoxItem Content="Ecommerce"/>
                     </ComboBox>
                     <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="17" Margin="48,34,0,0" TextWrapping="Wrap" Text="Card Enter Mode" VerticalAlignment="Top" Width="111" Grid.ColumnSpan="2"/>
-                    <CheckBox x:Name="hasCVV2" Content="CVV2" HorizontalAlignment="Right" Height="17" Margin="0,59,145,0" VerticalAlignment="Top" Width="59" IsChecked="True" Grid.Column="1"/>
-                    <ComboBox x:Name="eciValues" Margin="186,56,224,0" SelectedIndex="0" IsEditable="True" Padding="0" Height="23" VerticalAlignment="Top" Grid.Column="1">
+                    <CheckBox x:Name="hasCVV2" Content="CVV2" HorizontalAlignment="Right" Height="17" Margin="0,59,145,0" VerticalAlignment="Top" Width="59" Grid.Column="1"/>
+                    <ComboBox x:Name="eciValues" Margin="186,56,224,0" SelectedIndex="2" IsEditable="True" Padding="0" Height="23" VerticalAlignment="Top" Grid.Column="1">
                         <ComboBoxItem x:Name="full3D" Content="Full 3-D Secure"/>
                         <ComboBoxItem x:Name="attempted3D" Content="3-D Secure Attempt"/>
                         <ComboBoxItem x:Name="no3D" Content="No 3-D Secure"/>
