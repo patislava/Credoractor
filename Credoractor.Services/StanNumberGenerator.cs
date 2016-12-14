@@ -10,7 +10,7 @@ namespace Credoractor.Services
     {
         public string STAN { get; set; }
 
-        public string GenerateStan(string uniqueNumber)
+        public virtual string GenerateStan(string uniqueNumber)
         {
             STAN = uniqueNumber;
             return STAN;
