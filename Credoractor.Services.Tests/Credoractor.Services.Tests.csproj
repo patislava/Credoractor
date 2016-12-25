@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="RetRefNumberGeneratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StanNumberGeneratorTests.cs" />
+    <Compile Include="NumberGeneratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Credoractor.Services\Credoractor.Services.csproj">

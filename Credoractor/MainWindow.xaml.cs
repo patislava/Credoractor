@@ -26,29 +26,23 @@ namespace Credoractor
 
         public MainWindow()
         {
-            //try
-            //{
-                InitializeComponent();
-            //}
-            //catch (XamlParseException ex)
-            //{
-            //  if (ex.InnerException != null)
-            //        MessageBox.Show(ex.InnerException.ToString());
-            //}
-
+            InitializeComponent();
             LoadCards();
         }
 
         private void SendButton(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
             if (purchaseRadioButton.IsChecked == true && isReversal.IsChecked == false)
             {
-                //Start transaction creation
-                purchase = new PurchaseService();
+               //Start transaction creation
+               var stan = new NumberGenerator();
+               var now = DateTime.Now;
+               var stanNumber = stan.GenerateUniqueNumber(now);
+               var rrn = new RetRefNumberGenerator(stanNumber);
+                   
+               purchase = new PurchaseService(stan, rrn);
 
-                Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text, transAmount.Text,
+               Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text, transAmount.Text,
                     cardEnterMode.Text, deviceId.Text, transCurrency.Text);
 
                 try
@@ -67,12 +61,6 @@ namespace Credoractor
             {
                 MessageBox.Show("Such transaction type is not supported.");
             }
-            //}
-            //catch (System.ComponentModel.Win32Exception ex)
-            //{
-            //    if (ex.InnerException != null)
-            //        MessageBox.Show(ex.InnerException.ToString());
-            //}
         }
 
         public void LoadCards()

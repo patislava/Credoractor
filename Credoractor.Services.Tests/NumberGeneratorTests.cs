@@ -9,13 +9,14 @@ using NUnit.Framework;
 namespace Credoractor.Services.Tests
 {
     [TestFixture, System.ComponentModel.Description("Stan generation tests")]
-    class StanNumberGeneratorTests
+    class NumberGeneratorTests
     {
         [Test, System.ComponentModel.Description("Correct Unique Number argument is properly returned")]
         public void correctUniqueNumberPassed_ReturnedSameStan()
         {
-            Mock<StanNumberGenerator> mockStanGenerator = new Mock<StanNumberGenerator>();
-            mockStanGenerator.Setup(m => m.GenerateStan("123456")).Returns("123456");
+            Mock<INumberGenerator> mockStanGenerator = new Mock<INumberGenerator>();
+            var totalSeconds = DateTime.Now.TimeOfDay.TotalSeconds.ToString();
+            mockStanGenerator.Setup(m => m.GenerateUniqueNumber(DateTime.Now)).Returns(totalSeconds);
         }
     }
 }

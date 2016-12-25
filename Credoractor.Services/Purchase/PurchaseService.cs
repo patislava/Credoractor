@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using Credoractor.Models;
 using Credoractor.Services;
@@ -9,18 +8,13 @@ namespace Credoractor.Services.Purchase
 {
     public class PurchaseService : IPurchaseService
     {
-        private string stan;
-        private string rrn;
+        private readonly INumberGenerator stan;
+        private readonly INumberGenerator rrn;
 
-        public PurchaseService()
+        public PurchaseService(INumberGenerator stan, INumberGenerator retRefNumber)
         {
-            string uniqueNumber = (new NumberGenerator() as INumberGenerator).GenerateUniqueNumber();
-
-            StanNumberGenerator stanObj = new StanNumberGenerator();
-            stan = stanObj.GenerateStan(uniqueNumber);
-
-            RetRefNumberGenerator rrnObj = new RetRefNumberGenerator();
-            rrn = rrnObj.GenerateRrn(uniqueNumber);
+            this.stan = stan;
+            this.rrn = retRefNumber;
         }
 
         public Transaction MakePurchase(string testCard, string transactionAmount, string cardEntryMode,
@@ -33,7 +27,7 @@ namespace Credoractor.Services.Purchase
             result.ProcessingCode = "000000"; //"00" - Goods/Services Purchase
             result.TransactionAmount = transactionAmount + "00";
             result.TransDateTime = DateTime.Now.ToString("MMddHHmmss");
-            result.STAN = stan; //??????????
+            result.STAN = stan.GenerateUniqueNumber(DateTime.Now);
             result.TransactionTime = DateTime.Now.ToString("HHmmss");
             result.TransactionDate = DateTime.Now.ToString("MMdd");
             if (CardEnterMode.Ecommerce.ToString() == "Ecommerce")
@@ -41,7 +35,7 @@ namespace Credoractor.Services.Purchase
                 cardEntryMode = "81";
                 result.POSEntryMode = cardEntryMode + "0";
             }
-            result.RRN = rrn; //??????????
+            result.RRN = rrn.GenerateUniqueNumber(DateTime.Today);
             result.TerminalId = terminalId;
             //result.CardAcceptorId = "optional";
             //result.CardAcceptorNameLocation = "optional";
@@ -53,9 +47,9 @@ namespace Credoractor.Services.Purchase
                 transactionCurrency = "978";
                 result.TransactionCurrency = transactionCurrency;
             }
-
             return result;
         }
+
         ////TODO - implement through WPF custom converter on UI part, temporary solution
     }
 }

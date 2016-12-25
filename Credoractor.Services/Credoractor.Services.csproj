@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LinqToExcel, Version=1.10.1.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=x86">
       <HintPath>..\packages\LinqToExcel.1.10.1\lib\LinqToExcel.dll</HintPath>
       <Private>True</Private>
@@ -64,15 +68,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autofac.cs" />
     <Compile Include="CardService.cs" />
     <Compile Include="INumberGenerator.cs" />
     <Compile Include="Purchase\PurchaseService.cs" />
     <Compile Include="Purchase\IPurchaseService.cs" />
     <Compile Include="NumberGenerator.cs" />
     <Compile Include="RetRefNumberGenerator.cs" />
-    <Compile Include="StanNumberGenerator.cs" />
-    <Compile Include="TagField.cs" />
-    <Compile Include="Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,9 +12,9 @@ namespace Credoractor.Services
         public int lastUsedSecond;
         public int lastDigit = 0;
 
-        public string GenerateUniqueNumber()
+        public string GenerateUniqueNumber(DateTime now) 
         {
-            int passedSeconds = (int) DateTime.Now.TimeOfDay.TotalSeconds;
+            int passedSeconds = (int) now.TimeOfDay.TotalSeconds;
             string uniqueNumber;
 
             if (passedSeconds == lastUsedSecond)
@@ -25,7 +25,7 @@ namespace Credoractor.Services
             //To compare and check if there were two unique numbers generated per second.
             lastUsedSecond = passedSeconds;
 
-            uniqueNumber = passedSeconds.ToString().PadLeft(5, '0') + lastDigit;
+            uniqueNumber = (passedSeconds.ToString().PadLeft(5, '0') + lastDigit);
 
             return uniqueNumber;
         }
