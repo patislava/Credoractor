@@ -59,6 +59,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -68,14 +69,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Autofac.cs" />
     <Compile Include="CardService.cs" />
     <Compile Include="INumberGenerator.cs" />
+    <Compile Include="IRetRefNumberGenerator.cs" />
     <Compile Include="Purchase\PurchaseService.cs" />
     <Compile Include="Purchase\IPurchaseService.cs" />
     <Compile Include="NumberGenerator.cs" />
     <Compile Include="RetRefNumberGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Credoractor.Models\Credoractor.Models.csproj">
@@ -85,6 +87,10 @@
     <ProjectReference Include="..\Credoractor.TransactionClient\Credoractor.TransactionClient.csproj">
       <Project>{7a5cc6b4-efa4-41b4-94a2-149f14e15db4}</Project>
       <Name>Credoractor.TransactionClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DI\DI.csproj">
+      <Project>{9ca05cb4-5bb6-4b2d-bc6b-e28ae2988216}</Project>
+      <Name>DI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

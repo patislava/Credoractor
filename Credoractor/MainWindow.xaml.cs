@@ -12,6 +12,7 @@ using System.Management.Automation.Runspaces;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Markup;
+using DI;
 
 namespace Credoractor
 {
@@ -34,28 +35,39 @@ namespace Credoractor
         {
             if (purchaseRadioButton.IsChecked == true && isReversal.IsChecked == false)
             {
-               //Start transaction creation
-               var stan = new NumberGenerator();
-               var now = DateTime.Now;
-               var stanNumber = stan.GenerateUniqueNumber(now);
-               var rrn = new RetRefNumberGenerator(stanNumber);
-                   
-               purchase = new PurchaseService(stan, rrn);
 
-               Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text, transAmount.Text,
+                // Deal with DI for TransactionClientModule and ServicesModule
+                new TransactionClientModule().Register(DependencyContainer.Instance);
+                new ServicesModule().Register(DependencyContainer.Instance);
+                DependencyContainer.Instance.Resolve<ITransactionSender>();
+
+                var purchaseResult = DependencyContainer.Instance.Resolve<IPurchaseService>().MakePurchase(testCard.Text, transAmount.Text,
                     cardEnterMode.Text, deviceId.Text, transCurrency.Text);
 
-                try
-                {
-                    TransactionSender transactionSender = new TransactionSender(ConfigurationManager.AppSettings["transactorPath"]);
-                    transactionSender.SendTransaction(purchaseTransaction);
-                    var result = transactionSender.GetTransactionResult();
-                    MessageBox.Show("Test executed:\n" + result);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                MessageBox.Show("The result is: " + purchaseResult);
+
+                ////Start transaction creation
+                //var stan = new NumberGenerator();
+                //var now = DateTime.Now;
+                //var stanNumber = stan.GenerateUniqueNumber(now);
+                //var rrn = new RetRefNumberGenerator(stanNumber);
+
+                //purchase = new PurchaseService(stan, rrn);
+
+                //Transaction purchaseTransaction = purchase.MakePurchase(testCard.Text, transAmount.Text,
+                //     cardEnterMode.Text, deviceId.Text, transCurrency.Text);
+
+                // try
+                // {
+                //     //TransactionSender transactionSender = new TransactionSender(ConfigurationManager.AppSettings["transactorPath"]);
+                //     //transactionSender.SendTransaction(purchaseTransaction);
+                //     //var result = transactionSender.GetTransactionResult();
+                //     //MessageBox.Show("Test executed:\n" + result);
+                // }
+                // catch (Exception ex)
+                // {
+                //     MessageBox.Show(ex.Message);
+                // }
             }
             else
             {

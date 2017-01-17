@@ -1,7 +1,9 @@
 ﻿namespace Credoractor.TransactionClient
 {
-    interface ITransactionSender
+    public interface ITransactionSender
     {
         void SendTransaction(object payload);
+
+        string GetTransactionResult();
     }
 }

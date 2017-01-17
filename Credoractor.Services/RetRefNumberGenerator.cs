@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Credoractor.Services
 {
-    public class RetRefNumberGenerator : INumberGenerator
+    public class RetRefNumberGenerator : IRetRefNumberGenerator
     {
         private readonly string uniqueNumber;
 

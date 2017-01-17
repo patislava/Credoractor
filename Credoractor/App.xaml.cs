@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using Credoractor.Services;
+using DI;
 
 namespace Credoractor
 {
@@ -12,6 +8,13 @@ namespace Credoractor
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
-    {      
+    {
+        //protected override void OnStartup(StartupEventArgs e)
+        //{
+        //    base.OnStartup(e);
+
+        //    var serviceModule = new ServicesModule();
+        //    serviceModule.Register(DependencyContainer.Instance);
+        //}
     }
 }

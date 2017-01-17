@@ -44,6 +44,10 @@
     <StartupObject>Credoractor.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Caliburn.Micro, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.Core.3.0.1\lib\net45\Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
@@ -139,6 +143,10 @@
     <ProjectReference Include="..\Credoractor.TransactionClient\Credoractor.TransactionClient.csproj">
       <Project>{7a5cc6b4-efa4-41b4-94a2-149f14e15db4}</Project>
       <Name>Credoractor.TransactionClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DI\DI.csproj">
+      <Project>{9CA05CB4-5BB6-4B2D-BC6B-E28AE2988216}</Project>
+      <Name>DI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

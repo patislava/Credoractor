@@ -49,12 +49,12 @@ namespace Credoractor.TransactionClient
             proc.StartInfo.FileName = Path;
             proc.StartInfo.CreateNoWindow = true;
             proc.StartInfo.UseShellExecute = false;
-            proc.Start();            
+            proc.Start();
+            proc.WaitForExit();
         }
 
         public string GetTransactionResult()
-        {
-            System.Threading.Thread.Sleep(5000);
+        {            
             string logPath = ConfigurationManager.AppSettings["logPath"];
             var result = File.ReadAllText(logPath, Encoding.UTF8);
 
