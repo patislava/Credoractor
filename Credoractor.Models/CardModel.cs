@@ -19,15 +19,23 @@ namespace Credoractor.Models
         public string PinBlock { get; set; }
         public string ChipData { get; set; }
 
-        public CardModel(CardType cardType, string cardNumber)
+        public CardModel(string cardName, string cardNumber, string expMonth, string expYear, string cvv2, 
+            string ucafId, string track2, string pinBlock, string chipData)
         {
             if (cardNumber.Length < 16 || cardNumber.Length > 19)
             {
                 throw new System.ArgumentException("Invalid card number. PAN can be 16-19 digits.");
             }
 
-            CardType = cardType;
+            CardName = cardName;
             CardNumber = cardNumber;
+            ExpirationMonth = expMonth;
+            ExpirationYear = expYear;
+            CVV2 = cvv2;
+            UcafIndicator = ucafId;
+            Track2Data = track2;
+            PinBlock = pinBlock;
+            ChipData = chipData;
         }
 
         public CardModel(string cardName, string cardNumber)
@@ -41,9 +49,20 @@ namespace Credoractor.Models
             CardNumber = cardNumber;
         }
 
+        public CardModel(CardType cardType, string cardNumber)
+        {
+            if (cardNumber.Length < 16 || cardNumber.Length > 19)
+            {
+                throw new System.ArgumentException("Invalid card number. PAN can be 16-19 digits.");
+            }
+
+            CardType = cardType;
+            CardNumber = cardNumber;
+        }
+
         public override string ToString()
         {
-            return (CardNumber);
+            return (CardNumber + " (" + CardName + ") ");
         }
     }
 }

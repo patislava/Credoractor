@@ -39,7 +39,7 @@ namespace Credoractor.Services.Purchase
                 cardEntryMode = "81";
                 transaction.POSEntryMode = cardEntryMode + "0";
             }
-            transaction.RRN = rrn.GenerateUniqueNumber(DateTime.Today);
+            transaction.RRN = rrn.GenerateUniqueNumber(DateTime.Today, transaction.STAN);
             transaction.TerminalId = terminalId;
             //result.CardAcceptorId = "optional";
             //result.CardAcceptorNameLocation = "optional";
@@ -57,7 +57,7 @@ namespace Credoractor.Services.Purchase
             // Convert transaction to JSON and send via transactor.exe with result collection
             //DependencyContainer.Instance.Resolve<ITransactionSender>().SendTransaction(transaction);  ----- SHOULD BE HERE?!
 
-            transSender.SendTransaction(transaction);
+            transSender.SendTransaction(transaction, ConfigurationManager.AppSettings["transactorPath"]);
             var result = transSender.GetTransactionResult();
 
             return result;

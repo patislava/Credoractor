@@ -10,28 +10,28 @@ namespace Credoractor.Models
 {
     public class CardExcelData
     {
-        [ExcelColumn("Name")]
+        [ExcelColumn("CardName")]
         public string CardName { get; set; }
 
         [ExcelColumn("PAN")]
         public string PAN { get; set; }
 
-        [ExcelColumn("ExpMonth")]
+        [ExcelColumn("ExpirationMonth")]
         public string ExpirationMonth { get; set; }
 
-        [ExcelColumn("ExpYear")]
+        [ExcelColumn("ExpirationYear")]
         public string ExpirationYear { get; set; }
 
         [ExcelColumn("CVV2")]
         public string CVV2 { get; set; }
 
-        [ExcelColumn("UCAF")]
+        [ExcelColumn("UcafIndicator")]
         public string UcafIndicator { get; set; }
 
-        [ExcelColumn("TRACK2")]
+        [ExcelColumn("Track2Data")]
         public string Track2Data { get; set; }
 
-        [ExcelColumn("PIN_BLOCK")]
+        [ExcelColumn("PinBlock")]
         public string PinBlock { get; set; }
 
         [ExcelColumn("ChipData")]

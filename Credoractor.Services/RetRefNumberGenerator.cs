@@ -6,17 +6,20 @@ namespace Credoractor.Services
     {
         private readonly string uniqueNumber;
 
-        public RetRefNumberGenerator(string uniqueNumber)
-        {
-            if (string.IsNullOrEmpty(uniqueNumber.ToString()))
-            {
-                throw new System.NullReferenceException("Unique number was not passed to create RRN.");
-            }
+        //public RetRefNumberGenerator(string uniqueNumber)
+        //{
+        //    if (string.IsNullOrEmpty(uniqueNumber.ToString()))
+        //    {
+        //        throw new System.NullReferenceException("Unique number was not passed to create RRN.");
+        //    }
 
-            this.uniqueNumber = uniqueNumber;
+        //    this.uniqueNumber = uniqueNumber;
+        //}
+        public RetRefNumberGenerator()
+        {
         }
 
-        public string GenerateUniqueNumber(DateTime now)
+        public string GenerateUniqueNumber(DateTime now, string uniqueNumber )
         {
             const string uniqueInterfaceId = "00";
 

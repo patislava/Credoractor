@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using Credoractor.Services;
+using Credoractor.Services.Purchase;
+using Credoractor.TransactionClient;
 using DI;
 
 namespace Credoractor
@@ -9,12 +11,13 @@ namespace Credoractor
     /// </summary>
     public partial class App : Application
     {
-        //protected override void OnStartup(StartupEventArgs e)
-        //{
-        //    base.OnStartup(e);
-
-        //    var serviceModule = new ServicesModule();
-        //    serviceModule.Register(DependencyContainer.Instance);
-        //}
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            // Deal with DI for TransactionClientModule and ServicesModule
+            new TransactionClientModule().Register(DependencyContainer.Instance);
+            new ServicesModule().Register(DependencyContainer.Instance);
+            DependencyContainer.Instance.Resolve<ITransactionSender>();
+        }
     }
 }

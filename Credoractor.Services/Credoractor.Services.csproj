@@ -69,7 +69,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CardService.cs" />
+    <Compile Include="CardServiceOld.cs" />
+    <Compile Include="CardServiceExcel.cs" />
+    <Compile Include="ICardServiceExcel.cs" />
     <Compile Include="INumberGenerator.cs" />
     <Compile Include="IRetRefNumberGenerator.cs" />
     <Compile Include="Purchase\PurchaseService.cs" />

@@ -2,7 +2,7 @@
 {
     public interface ITransactionSender
     {
-        void SendTransaction(object payload);
+        void SendTransaction(object payload, string path);
 
         string GetTransactionResult();
     }

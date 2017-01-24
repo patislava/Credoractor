@@ -8,6 +8,6 @@ namespace Credoractor.Services
 {
     public interface IRetRefNumberGenerator
     {
-        string GenerateUniqueNumber(DateTime now);
+        string GenerateUniqueNumber(DateTime now, string uniqueNumber);
     }
 }

@@ -12,28 +12,34 @@ namespace Credoractor.TransactionClient
     {
         public string Path { get; private set; }
 
-        public TransactionSender(string path)
+        public TransactionSender()
+        {
+            
+        }
+        //string path
+        //{
+        //    Path = path;
+
+        //    if (string.IsNullOrEmpty(path))
+        //    {
+        //        throw new ArgumentException("Parameter cannot be empty or null.");
+        //    }
+
+        //    //if (!File.Exists(path))
+        //    //{
+        //    //    throw new System.ComponentModel.Win32Exception();
+        //    //}
+
+        //    if (path.Contains(":\\"))
+        //    {
+        //        Path = System.IO.Path.GetFullPath(path);
+        //    }
+        //}
+
+        public void SendTransaction(object payload, string path)
         {
             Path = path;
 
-            if (string.IsNullOrEmpty(path))
-            {
-                throw new ArgumentException("Parameter cannot be empty or null.");
-            }
-
-            //if (!File.Exists(path))
-            //{
-            //    throw new System.ComponentModel.Win32Exception();
-            //}
-
-            if (path.Contains(":\\"))
-            {
-                Path = System.IO.Path.GetFullPath(path);
-            }
-        }
-
-        public void SendTransaction(object payload) 
-        {
             if (payload.Equals(null))
             {
                 throw new ArgumentNullException("There is no transaction data to send.");
