@@ -8,6 +8,8 @@ namespace Credoractor.Services
     {
         public void Register(IDependencyContainer container)
         {
+            container.Register<ICardServiceExcel, CardServiceExcel>();
+
             container.Register<INumberGenerator, NumberGenerator>();
             container.Register<IRetRefNumberGenerator, RetRefNumberGenerator>();
 

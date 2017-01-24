@@ -13,7 +13,6 @@ namespace Credoractor
     {
 
         //private CardService testCards = new CardService();
-        private ICardServiceExcel testCards = new CardServiceExcel();
         private IPurchaseService purchase;
         private readonly object purchaseServiceResolution;
 
@@ -42,6 +41,7 @@ namespace Credoractor
 
         public void LoadCards()
         {
+            var testCards = DependencyContainer.Instance.Resolve<ICardServiceExcel>();
             var result = testCards.GetCardBasicInfo(".\\CardData.xlsx");
 
             for (int i = 0; i < result.Count; i++)
